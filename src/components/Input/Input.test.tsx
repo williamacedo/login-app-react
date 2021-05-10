@@ -7,12 +7,13 @@ import Input from './Input';
 describe('Input', () => {
   const inputMock = jest.fn();
   it('should exist a input and it can change the value', () => {
-    const { getByTestId } = render(<Input value="" onChangeValue={inputMock} />);
+    const { getByTestId, getByText } = render(<Input value="" onChangeValue={inputMock} label="Example" />);
 
     const input = getByTestId('input');
 
     fireEvent.change(input, { target: { value: 'lorem ipsum' } });
 
-    expect(inputMock).toHaveBeenCalled();    
+    getByText('Example');
+    expect(inputMock).toHaveBeenCalledWith('lorem ipsum');   
   });
 });

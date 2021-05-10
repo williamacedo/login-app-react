@@ -2,12 +2,13 @@ import React, { ChangeEvent } from 'react';
 
 interface Props {
   value: string;
-  onChangeValue: (value: string) => void
+  onChangeValue: (value: string) => void,
+  label: string;
 }
 
 function Input(props: Props) {
 
-  const { value, onChangeValue } = props;
+  const { value, onChangeValue, label } = props;
 
   function handleChangeInput(event: ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
@@ -17,6 +18,7 @@ function Input(props: Props) {
 
   return (
     <div>
+      <div>{label}</div>
       <input value={value} onChange={(event) => handleChangeInput(event)} data-testid="input" />
     </div>
   )
