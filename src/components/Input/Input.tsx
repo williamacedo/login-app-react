@@ -1,27 +1,32 @@
 import React, { ChangeEvent } from 'react';
+import PropTypes from 'prop-types';
+import { InputContainer, Label, BasicInput } from './styles';
 
 interface Props {
-  value: string;
-  onChangeValue: (value: string) => void,
+  inputValue: string;
+  onChangeValue: (value: string) => void;
   label: string;
 }
-
-function Input(props: Props) {
-
-  const { value, onChangeValue, label } = props;
-
+const Input: React.FunctionComponent<Props> = ({ inputValue, onChangeValue, label }) => {
   function handleChangeInput(event: ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
     const { value } = event.target;
     onChangeValue(value);
   }
-
   return (
-    <div>
-      <div>{label}</div>
-      <input value={value} onChange={(event) => handleChangeInput(event)} data-testid="input" />
-    </div>
-  )
-}
-
+    <InputContainer>
+      <Label>{label}</Label>
+      <BasicInput 
+        value={inputValue} 
+        onChange={handleChangeInput} 
+        data-testid="input" 
+      />
+    </InputContainer>
+  );
+};
+Input.propTypes = {
+  inputValue: PropTypes.string.isRequired,
+  onChangeValue: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+};
 export default Input;

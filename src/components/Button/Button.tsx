@@ -1,10 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { SimpleButton } from './styles';
 
 interface ButtonProps {
   name: string;
-  click: () => void
+  click: () => void;
 }
 
-const  Button = (props: ButtonProps) => <button onClick={props.click}>{props.name}</button>;
-
+const Button: React.FC<ButtonProps> = ({ name, click }) => (
+  <SimpleButton type="button" onClick={click}>
+    {name}
+  </SimpleButton>
+);
+ 
+Button.propTypes = {
+  name: PropTypes.string.isRequired,
+  click: PropTypes.func.isRequired,
+};
 export default Button;
