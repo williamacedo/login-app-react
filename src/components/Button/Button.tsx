@@ -8,7 +8,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ name, click }) => (
-  <SimpleButton type="button" onClick={click}>
+  <SimpleButton type="button" onClick={click} data-testid="test-button">
     {name}
   </SimpleButton>
 );
