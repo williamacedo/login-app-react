@@ -47,7 +47,7 @@ describe('SignIn', () => {
     getByText('Email e senha invalidos');
   });
 
-  it('should add token in localStorage', async () => {
+  it('should add call request if email e password is valid', async () => {
     mockedAxios.post.mockResolvedValue({ data: { acessToken: 'abc' } });
 
     const { getAllByTestId, getByText } = render(<SignIn />);
